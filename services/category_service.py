@@ -1,4 +1,5 @@
 from sqlalchemy.orm import sessionmaker
+
 from utils.database_setup import setup_database
 from models import Category  # Import Category directly from models
 

@@ -19,5 +19,5 @@ class Size(Base):
 
     __tablename__ = "sizes"
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    description = Column(String, nullable=False)
+    name = Column(String(50), nullable=False)
+    description = Column(String(200), nullable=False)

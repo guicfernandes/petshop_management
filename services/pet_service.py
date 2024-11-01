@@ -7,7 +7,14 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
-def add_pet(name, category_id, size_id, hair_id, special_needs):
+def add_pet(
+    name: str,
+    category_id: int,
+    size_id: int,
+    hair_id: int,
+    human_id: int,
+    special_needs: bool,
+):
     """Add a new pet to the database.
 
     Args:
@@ -23,6 +30,7 @@ def add_pet(name, category_id, size_id, hair_id, special_needs):
         category_id=category_id,
         size_id=size_id,
         hair_id=hair_id,
+        human_id=human_id,
         special_needs=special_needs,
     )
     session.add(pet)
@@ -52,6 +60,7 @@ def update_pet(
     category_id: int = None,
     size_id: int = None,
     hair_id: int = None,
+    human_id: int = None,
     special_needs: str = None,
 ):
     """Update a pet's information.
@@ -74,6 +83,8 @@ def update_pet(
             pet.size_id = size_id
         if hair_id:
             pet.hair_id = hair_id
+        if human_id:
+            pet.human_id = human_id
         if special_needs:
             pet.special_needs = special_needs
         session.commit()

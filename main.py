@@ -30,21 +30,21 @@ def main():
 
         if choice == "1":
             name = input("Enter name: ")
-            telephone = input("Enter telephone: ")
+            phone = input("Enter phone: ")
             email = input("Enter email: ")
-            add_human(name, telephone, email)
+            add_human(name, phone, email)
         elif choice == "2":
             humans = get_humans()
             for human in humans:
                 print(
-                    f"ID: {human.id}, Name: {human.name}, Telephone: {human.telephone}, Email: {human.email}"
+                    f"ID: {human.id}, Name: {human.name}, phone: {human.phone}, Email: {human.email}"
                 )
         elif choice == "3":
             human_id = int(input("Enter human ID to update: "))
             name = input("Enter new name (leave blank to keep current): ")
-            telephone = input("Enter new telephone (leave blank to keep current): ")
+            phone = input("Enter new phone (leave blank to keep current): ")
             email = input("Enter new email (leave blank to keep current): ")
-            update_human(human_id, name, telephone, email)
+            update_human(human_id, name, phone, email)
         elif choice == "4":
             human_id = int(input("Enter human ID to delete: "))
             delete_human(human_id)
@@ -53,8 +53,16 @@ def main():
             category_id = int(input("Enter category ID: "))
             size_id = int(input("Enter size ID: "))
             hair_id = int(input("Enter hair ID: "))
+            human_id = int(input("Enter human ID: "))
             special_needs = input("Enter special needs: ")
-            add_pet(name, category_id, size_id, hair_id, special_needs)
+            add_pet(
+                name=name,
+                category_id=category_id,
+                size_id=size_id,
+                hair_id=hair_id,
+                human_id=human_id,
+                special_needs=special_needs,
+            )
         elif choice == "6":
             break
         else:

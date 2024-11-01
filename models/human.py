@@ -18,9 +18,9 @@ class Human(Base):
 
     __tablename__ = "humans"
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    telephone = Column(String, nullable=False)
-    email = Column(String, nullable=False)
+    name = Column(String(50), nullable=False)
+    phone = Column(String(15), nullable=False)
+    email = Column(String(50), nullable=True)
     # pets = relationship("Pet", back_populates="human")
     # TODO: Define how to relate the human and pet tables, humans can have multiple pets
     # pets = relationship(Pet, back_populates="human")

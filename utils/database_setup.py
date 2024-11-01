@@ -22,7 +22,13 @@ If the module is run as the main program, it calls the setup_database function t
 The module uses the SQLAlchemy library to interact with the database.
 """
 
-from sqlalchemy import create_engine
+import os
+import sys
+from sqlalchemy import create_engine, text
+
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+
 from models import Base
 
 
@@ -40,6 +46,14 @@ def setup_database(database_name: str = "petshop.db") -> create_engine:
     return engine
 
 
-if __name__ == "__main__":
-    # It should be executed only if the database doesn't exist yet
-    setup_database()
+def delete_table(table_name: str):
+    """Delete the specified tables from the database.
+
+    Args:
+        tables (str): The name of the table to delete.
+    """
+    engine = setup_database()
+    # Base.metadata.drop_all(engine, tables=table_name)
+    with engine.connect() as connection:
+        connection.execute(text(f"DROP TABLE IF EXISTS {table_name}"))
+        print(f"Table '{table_name}' has been deleted.")

@@ -2,7 +2,7 @@
 Pet class to store the pets of the pet shop.
 """
 
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Boolean, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 from .base import Base
@@ -21,25 +21,13 @@ class Pet(Base):
 
     __tablename__ = "pets"
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    # category_id = Column(Integer, ForeignKey("categories.id"))
-    # size_id = Column(Integer, ForeignKey("sizes.id"))
-    # hair_id = Column(Integer, ForeignKey("hairs.id"))
-    category_id = Column(Integer, ForeignKey(Category.id))
-    size_id = Column(Integer, ForeignKey(Size.id))
-    hair_id = Column(Integer, ForeignKey(Hair.id))
-    special_needs = Column(String, nullable=True)
-    human_id = Column(Integer, ForeignKey("humans.id"))
-    # human_id = Column(Integer, ForeignKey(Human.id))
-    # human = relationship("Human", back_populates="pets")
-    # category = relationship("Category")
-    # size = relationship("Size")
-    # hair = relationship("Hair")
-    # human = relationship(Human, back_populates="pets")
+    name = Column(String(50), nullable=False)
+    category_id = Column(Integer, ForeignKey(Category.id), nullable=True)
+    size_id = Column(Integer, ForeignKey(Size.id), nullable=True)
+    hair_id = Column(Integer, ForeignKey(Hair.id), nullable=True)
+    special_needs = Column(Boolean, nullable=True)
+    human_id = Column(Integer, ForeignKey(Human.id), nullable=True)
     category = relationship(Category)
     size = relationship(Size)
     hair = relationship(Hair)
     human = relationship(Human)
-
-    # TODO: implement logic to return the human, category, size and hair name
-    # instead of the ids
